@@ -6,7 +6,7 @@
 <h3>Le Terrain de Jeu de Rôle</h3>
 
 <div>
-    <h1 style="text-align: center;">* Le Jeu *</h1>
+    <h1 style="text-align: center;"> Le Jeu </h1>
     <hr />
     <ul>
         <li>
@@ -16,9 +16,9 @@
                     
                     - Choisissez votre personnage :
                     <ol>
-                        <li><button @onclick="() => ChoisirPersonnage('Guerrier')">Guerrier</button></li>
-                        <li><button @onclick="() => ChoisirPersonnage('Sorcier')">Sorcier</button></li>
-                        <li><button @onclick="() => ChoisirPersonnage('Archer')">Archer</button></li>
+                        <li><button @onclick='() => ChoisirPersonnage("Guerrier")'>Guerrier</button></li>
+                        <li><button @onclick='() => ChoisirPersonnage("Sorcier")'>Sorcier</button></li>
+                        <li><button @onclick='() => ChoisirPersonnage("Archer")'>Archer</button></li>
                     </ol>
                 </li>
             </ul>
@@ -35,9 +35,9 @@
                 <li>
                     - Modifiez les paramètres du jeu :
                     <ol>
-                        <li><button @onclick="() => ModifierParametre('Audio')">Audio</button></li>
-                        <li><button @onclick="() => ModifierParametre('Graphiques')">Graphiques</button></li>
-                        <li><button @onclick="() => ModifierParametre('Commandes')">Commandes</button></li>
+                        <li><button @onclick='() => ModifierParametre("Audio")'>Audio</button></li>
+                        <li><button @onclick='() => ModifierParametre("Graphiques")'>Graphiques</button></li>
+                        <li><button @onclick='() => ModifierParametre("Commandes")'>Commandes</button></li>
                     </ol>
                 </li>
             </ul>
