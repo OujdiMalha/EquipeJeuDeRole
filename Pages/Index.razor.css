@@ -29,12 +29,13 @@ h2 {
     grid-template-columns: repeat(5, 50px); /* 10 colonnes, chaque colonne de 50 pixels */
     grid-template-rows: repeat(10, 50px); /* 10 lignes, chaque ligne de 50 pixels */
     gap: 5px; /* Espace entre les cellules */
+    background-color: #00FF7F; /* Couleur de fond de la cellule */
 }
 
 .grid-cell {
     width: 50px; /* Largeur de la cellule */
     height: 50px; /* Hauteur de la cellule */
-    background-color: #00FF7F; /* Couleur de fond de la cellule */
+    background-color: black; /* Couleur de fond de la cellule */
     border: 1px solid #fff; /* Bordure de la cellule */
 }
 
