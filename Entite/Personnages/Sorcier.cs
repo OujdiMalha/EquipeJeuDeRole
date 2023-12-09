@@ -1,7 +1,10 @@
-/* public class Sorcier
-{
-    equilPdeVie: int;
-    pouvoirMagique: int;
-    pointsMana: int;
-    + degatsMin() : int+ degatsMax() : int+ lancerSort() : void+ rechargerMana() : void
-}*/
+public class Sorcier
+{ 
+  equilPdeVie: int;
+  pouvoirMagique: int;
+  pointsMana: int;
+  int degatsMin();
+  int degatsMax();
+  void lancerSort();
+  void rechargerMana();
+}
