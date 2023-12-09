@@ -2,6 +2,7 @@
 
 public class Guerrier
 {
+    int classeID = 2;
     int equilPdeVie;
     int force;
     int armure;

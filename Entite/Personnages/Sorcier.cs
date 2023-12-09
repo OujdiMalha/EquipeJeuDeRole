@@ -1,5 +1,6 @@
 public class Sorcier
-{ 
+{
+  int classeID = 3;
   int equilPdeVie;
   int pouvoirMagique;
   int pointsMana;

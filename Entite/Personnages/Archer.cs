@@ -1,5 +1,6 @@
 public class Archer
-{   
+{
+    int classeID = 1;
     int autorisObject;
     int equilPdeVie;
     int precision;
