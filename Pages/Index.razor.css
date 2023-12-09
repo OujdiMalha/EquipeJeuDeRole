@@ -1,0 +1,74 @@
+﻿/* Index.razor.css */
+
+body {
+    font-family: 'Times New Roman', sans-serif;
+    background-color: #f4f4f4; /* Utilisation d'une couleur de fond plus neutre */
+    color: #333; /* Couleur du texte principale */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px; /* Définir une largeur maximale pour le contenu afin de le centrer */
+    margin: 0 auto; /* Centrer le contenu horizontalement */
+    padding: 20px;
+    text-align: center;
+    background-color: #fff; /* Couleur de fond du conteneur */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour le contour du conteneur */
+}
+
+h2 {
+    color: #3498db; /* Couleur du texte */
+    border-bottom: 2px solid #3498db; /* Bordure en bas */
+    padding-bottom: 5px; /* Espace sous la bordure pour un aspect propre */
+    margin-bottom: 20px; /* Marge en bas pour l'espace avec les autres éléments */
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 50px); /* 10 colonnes, chaque colonne de 50 pixels */
+    grid-template-rows: repeat(10, 50px); /* 10 lignes, chaque ligne de 50 pixels */
+    gap: 5px; /* Espace entre les cellules */
+}
+
+.grid-cell {
+    width: 50px; /* Largeur de la cellule */
+    height: 50px; /* Hauteur de la cellule */
+    background-color: #00FF7F; /* Couleur de fond de la cellule */
+    border: 1px solid #fff; /* Bordure de la cellule */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.encadre {
+    border: 1px solid #ddd; /* Bordure autour du texte */
+    padding: 10px; /* Espace intérieur pour un aspect plus propre */
+    margin-bottom: 10px; /* Marge en bas pour l'espace avec les autres éléments */
+}
+
+button {
+    padding: 10px 20px; /* Augmenter la taille du bouton pour une meilleure visibilité */
+    font-size: 16px; /* Augmenter la taille de la police du bouton */
+    cursor: pointer;
+    background-color: salmon; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    border: none; /* Supprimer la bordure du bouton */
+    border-radius: 5px; /* Ajouter des coins arrondis au bouton */
+    transition: background-color 0.3s; /* Ajouter une transition pour un effet de survol plus lisse */
+}
+
+    button:hover {
+        background-color: greenyellow; /* Changement de couleur au survol */
+    }
+
+ol {
+    margin-top: 0;
+    padding-left: 20px;
+}

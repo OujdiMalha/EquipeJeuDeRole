@@ -1,4 +1,4 @@
-﻿namespace EquipeJeuDeRole.Races
+﻿namespace EquipeJeuDeRole.Pages
 {
     public class Races
     {

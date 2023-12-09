@@ -1,20 +1,16 @@
 ﻿@page "/"
 
 <PageTitle>Index</PageTitle>
-
-
-<h3>Le Terrain de Jeu de Rôle</h3>
+<link rel="stylesheet" href="Index.razor.css" />
 
 <div>
-    <h1 style="text-align: center;"> Le Jeu </h1>
+    <h2> Options </h2>
     <hr />
     <ul>
         <li>
             <button @onclick="() => NouvellePartie()">Nouvelle Partie</button>
             <ul>
                 <li>
-                    
-                    - Choisissez votre personnage :
                     <ol>
                         <li><button @onclick='() => ChoisirPersonnage("Guerrier")'>Guerrier</button></li>
                         <li><button @onclick='() => ChoisirPersonnage("Sorcier")'>Sorcier</button></li>
@@ -26,14 +22,14 @@
         <li>
             <button @onclick="() => ChargerPartie()">Charger Partie</button>
             <ul>
-                <li>- Chargez une partie précédemment sauvegardée.</li>
+                <li class="encadre"> Chargez une partie précédemment sauvegardée.</li>
             </ul>
         </li>
         <li>
             <button @onclick="() => AfficherOptions()">Options</button>
             <ul>
                 <li>
-                    - Modifiez les paramètres du jeu :
+
                     <ol>
                         <li><button @onclick='() => ModifierParametre("Audio")'>Audio</button></li>
                         <li><button @onclick='() => ModifierParametre("Graphiques")'>Graphiques</button></li>
@@ -44,12 +40,39 @@
         </li>
         <li>
             <button @onclick="() => Quitter()">Quitter</button>
-            <ul>
-                <li>- Quittez le jeu.</li>
-            </ul>
+
         </li>
     </ul>
 </div>
+
+
+<h2>Le Terrain de Jeu de Rôle</h2>
+
+<div class="game-grid">
+    <!-- Ajoutez plus de div pour représenter vos cellules -->
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell"></div>
+    <!-- ... Ajoutez autant de cellules que nécessaire ... -->
+</div>
+
 
                         @code {
     private void NouvellePartie()
