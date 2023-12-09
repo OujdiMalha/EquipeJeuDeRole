@@ -1,7 +1,8 @@
 /*public class Archer
-{
-
-    precision: int
-nombreFleches: int
-+ degatsMin(): int+ degatsMax(): int+ attaquerADistance(): void+ rechargerFleches(): void
+{   
+    autorisObject : int;
+    equilPdeVie: int;
+    precision: int ;
+    nombreFleches: int ; 
+    degatsMin(): int+ degatsMax(): int+ attaquerADistance(): void+ rechargerFleches(): void;
 }*/
