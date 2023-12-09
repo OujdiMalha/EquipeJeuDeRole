@@ -1,8 +1,12 @@
-/*public class Archer
-{   
-    autorisObject : int;
-    equilPdeVie: int;
-    precision: int ;
-    nombreFleches: int ; 
-    degatsMin(): int+ degatsMax(): int+ attaquerADistance(): void+ rechargerFleches(): void;
-}*/
+public class Archer
+{
+    int classeID = 1;
+    int autorisObject;
+    int equilPdeVie;
+    int precision;
+    int nombreFleches;
+    int degatsMin() { };
+    int degatsMax() { };
+    void attaquerADistance() { };
+    void rechargerFleches() { };
+}

@@ -1,6 +1,7 @@
-/*     public class Monstre
+public class MonstreType1
 {
-    type: String
-    pointsDeVie: int
-    + degatsMin() : int+ degatsMax() : int
-}*/
+    string type = "sbire";
+    int pointsDeVie;
+    int degatsMin() { };
+    int degatsMax() { };
+}
