@@ -1,42 +1,34 @@
 ﻿/* Index.razor.css */
-
-body {
-    font-family: 'Times New Roman', sans-serif;
-    background-color: #f4f4f4; /* Utilisation d'une couleur de fond plus neutre */
-    color: #333; /* Couleur du texte principale */
-    margin: 0;
-    padding: 0;
-}
-
 .container {
-    max-width: 800px; /* Définir une largeur maximale pour le contenu afin de le centrer */
-    margin: 0 auto; /* Centrer le contenu horizontalement */
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
     text-align: center;
-    background-color: #fff; /* Couleur de fond du conteneur */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour le contour du conteneur */
+    background-color: #B0B0B0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    color: #3498db; /* Couleur du texte */
-    border-bottom: 2px solid #3498db; /* Bordure en bas */
-    padding-bottom: 5px; /* Espace sous la bordure pour un aspect propre */
-    margin-bottom: 20px; /* Marge en bas pour l'espace avec les autres éléments */
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .game-grid {
     display: grid;
-    grid-template-columns: repeat(5, 50px); /* 10 colonnes, chaque colonne de 50 pixels */
-    grid-template-rows: repeat(10, 50px); /* 10 lignes, chaque ligne de 50 pixels */
-    gap: 5px; /* Espace entre les cellules */
-    background-color: #00FF7F; /* Couleur de fond de la cellule */
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 10px;
+    background-color: #00FF7F;
 }
 
 .grid-cell {
-    width: 50px; /* Largeur de la cellule */
-    height: 50px; /* Hauteur de la cellule */
-    background-color: black; /* Couleur de fond de la cellule */
-    border: 1px solid #fff; /* Bordure de la cellule */
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    background-color: #2c3e50;
+    border: 1px solid #fff;
 }
 
 ul {
@@ -49,27 +41,55 @@ li {
 }
 
 .encadre {
-    border: 1px solid #ddd; /* Bordure autour du texte */
-    padding: 10px; /* Espace intérieur pour un aspect plus propre */
-    margin-bottom: 10px; /* Marge en bas pour l'espace avec les autres éléments */
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
 button {
-    padding: 10px 20px; /* Augmenter la taille du bouton pour une meilleure visibilité */
-    font-size: 16px; /* Augmenter la taille de la police du bouton */
+    font-family: 'Exo', sans-serif; /* Une police moderne et géométrique avec une allure futuriste */
+    font-weight: bold; /* Texte en gras */
+    width: 420px; /* Ajout d'une largeur fixe (en pixels) */
+    padding: 12px 24px;
+    font-size: 16px;
     cursor: pointer;
-    background-color: salmon; /* Couleur de fond du bouton */
-    color: #fff; /* Couleur du texte du bouton */
-    border: none; /* Supprimer la bordure du bouton */
-    border-radius: 5px; /* Ajouter des coins arrondis au bouton */
-    transition: background-color 0.3s; /* Ajouter une transition pour un effet de survol plus lisse */
+    background-color: #C0C0C0;
+    color: #333333;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
     button:hover {
-        background-color: greenyellow; /* Changement de couleur au survol */
+        background-color: #E5A3AD;
     }
 
 ol {
     margin-top: 0;
     padding-left: 20px;
+}
+
+/* Styles pour le bouton avec la classe "partie" */
+.partie {
+    background-color: #FF0000;
+    color: #333333;
+}
+
+
+/* Styles pour le bouton avec la classe "guArSo" */
+.guArSo {
+    background-color: #E5C100;
+    color: #333333;
+}
+
+/* Styles pour le bouton avec la classe "precedente" */
+.precedente {
+    background-color: #A9EAFE;
+    color: #333333;
+}
+
+    /* Styles pour le bouton avec la classe "quitter" */
+.quitter {
+    background-color: red;
+    color: #333333;
 }

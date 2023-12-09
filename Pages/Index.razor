@@ -5,60 +5,37 @@
 
 <div>
     <h2> Options </h2>
-    <hr />
     <ul>
         <li>
-            <button @onclick="() => NouvellePartie()">Nouvelle Partie</button>
-            <ul>
-                <li>
-                    <ol>
-                        <li><button @onclick='() => ChoisirPersonnage("Guerrier")'>Guerrier</button></li>
-                        <li><button @onclick='() => ChoisirPersonnage("Sorcier")'>Sorcier</button></li>
-                        <li><button @onclick='() => ChoisirPersonnage("Archer")'>Archer</button></li>
-                    </ol>
-                </li>
-            </ul>
+            <button @onclick="() => NouvellePartie()">Nouvelle Partie : choisir votre personnage</button>
         </li>
+    </ul>
+    <ul>
         <li>
-            <button @onclick="() => ChargerPartie()">Charger Partie</button>
+            
             <ul>
-                <li class="encadre"> Chargez une partie précédemment sauvegardée.</li>
-            </ul>
-        </li>
-        <li>
-            <button @onclick="() => AfficherOptions()">Options</button>
-            <ul>
-                <li>
 
-                    <ol>
-                        <li><button @onclick='() => ModifierParametre("Audio")'>Audio</button></li>
-                        <li><button @onclick='() => ModifierParametre("Graphiques")'>Graphiques</button></li>
-                        <li><button @onclick='() => ModifierParametre("Commandes")'>Commandes</button></li>
-                    </ol>
-                </li>
+                <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Guerrier")'>Guerrier</button></li>
+                <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Sorcier")'>Sorcier</button></li>
+                <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Archer")'>Archer</button></li>
             </ul>
         </li>
         <li>
-            <button @onclick="() => Quitter()">Quitter</button>
-
+            <button class="precedente" @onclick="() => ChargerPartie()">Partie précédemment sauvegardée</button>
+        </li>
+        <li>
+            <button class="quitter" @onclick="() => Quitter()">Quitter le jeu</button>
         </li>
     </ul>
 </div>
 
-
 <h2>Le Terrain de Jeu de Rôle</h2>
 
 <div class="game-grid">
-    <!-- Ajoutez plus de div pour représenter vos cellules -->
-    <div class="game-grid">
-        @GenerateGrid(100, 100)
-    </div>
-
- 
+    @GenerateGrid(100, 100)
 </div>
 
-
-                        @code {
+@code {
     private void NouvellePartie()
     {
         // Logique pour commencer une nouvelle partie
@@ -88,9 +65,7 @@
     {
         // Logique pour quitter le jeu
     }
-}
 
-    @code {
     // Fonction pour générer la grille en C#
     private RenderFragment GenerateGrid(int rows, int columns)
     {
