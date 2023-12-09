@@ -2,10 +2,10 @@
 
 public class Guerrier
 {
-   equilPdeVie: int;
-   force: int;
-   armure: int;
-   int degatsMin();
-   int degatsMax();
-   void utiliserBouclier();
+    int equilPdeVie;
+    int force;
+    int armure;
+    int degatsMin() { };
+    int degatsMax() { };
+    void utiliserBouclier() { };
 }
