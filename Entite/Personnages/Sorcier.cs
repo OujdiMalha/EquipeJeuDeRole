@@ -1,4 +1,4 @@
-public class Sorcier
+/*public class Sorcier
 {
   int classeID = 3;
   int equilPdeVie;
@@ -8,4 +8,4 @@ public class Sorcier
   int degatsMax() { };
   void lancerSort() { };
   void rechargerMana() { };
-}
+}*/

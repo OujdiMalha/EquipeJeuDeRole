@@ -1,6 +1,6 @@
 ﻿//namespace EquipeJeuDeRole.Entite.Personnages
 
-public class Guerrier
+/*public class Guerrier
 {
     int classeID = 2;
     int equilPdeVie;
@@ -9,4 +9,4 @@ public class Guerrier
     int degatsMin() { };
     int degatsMax() { };
     void utiliserBouclier() { };
-}
+}*/

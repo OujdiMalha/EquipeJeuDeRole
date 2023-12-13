@@ -1,4 +1,4 @@
-public class Archer
+/*public class Archer
 {
     int classeID = 1;
     int autorisObject;
@@ -9,4 +9,4 @@ public class Archer
     int degatsMax() { };
     void attaquerADistance() { };
     void rechargerFleches() { };
-}
+}*/
