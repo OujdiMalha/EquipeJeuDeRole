@@ -9,4 +9,5 @@
     int degatsMax() { };
     void attaquerADistance() { };
     void rechargerFleches() { };
-}*/
+}
+*/

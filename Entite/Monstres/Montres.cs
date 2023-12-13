@@ -4,4 +4,6 @@
     int pointsDeVie;
     int degatsMin() { };
     int degatsMax() { };
+}
+*/
 }*/

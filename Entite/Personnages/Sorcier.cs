@@ -8,4 +8,5 @@
   int degatsMax() { };
   void lancerSort() { };
   void rechargerMana() { };
-}*/
+}
+*/
