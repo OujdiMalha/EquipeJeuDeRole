@@ -1,7 +1,7 @@
-﻿namespace EquipeJeuDeRole.Deplacement
+﻿/*namespace EquipeJeuDeRole.Deplacement
 {
     public class Deplacement
     {
         // ..
     }
-}
+}*/
