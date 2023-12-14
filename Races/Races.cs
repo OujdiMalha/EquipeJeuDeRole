@@ -1,8 +1,6 @@
-﻿/*
+namespace ConsoleApp1;
+
+public enum Races
 {
-    public class Races
-    {
-        //..
-    }
+    ELF,HUMAIN,ORC,NAIN
 }
-*/

@@ -1,13 +1,21 @@
-﻿//namespace EquipeJeuDeRole.Entite.Personnages
-/*
-public class Guerrier
+using JeuDeRole.Pages;
+
+public class Guerrier: Entity
 {
-    int classeID = 2;
-    int equilPdeVie;
-    int force;
-    int armure;
-    int degatsMin() { };
-    int degatsMax() { };
-    void utiliserBouclier() { };
+    
+    
+    public int Force{ get; set; }
+    
+    public Guerrier(string aNom = "GUERRIER") : base(aNom, 20)
+    {
+        Force = 6;
+    }
+
+
+   
+
+    public override void Attaquer(Entity cible)
+    {
+        Console.WriteLine("Le guerrier attaque !");
+    }
 }
-*/

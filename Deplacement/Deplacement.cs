@@ -1,7 +1,7 @@
-﻿/*namespace EquipeJeuDeRole.Deplacement
-{
-    public class Deplacement
-    {
-        // ..
-    }
-}*/
+
+
+public enum Deplacement
+{  
+    LEFT,RIGHT,UP,DOWN
+    
+}

@@ -1,4 +1,4 @@
-/*public class EpeeRare 
+public class EpeeRare 
 {
 	int CompClasse;
 	int degatMin;
@@ -37,4 +37,4 @@ public class BatonLegendaire
 	int CompClasse;
 	int degat;
 	string rarete = "legendaire";
-}*/
+}
