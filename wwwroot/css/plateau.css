@@ -40,7 +40,7 @@ plateau.css
     top: 2em;
     left: 4em;
 }
-listeAttaques {
+.listeAttaques {
     background-color: antiquewhite;
     width: 40%;
     height: 4em;
