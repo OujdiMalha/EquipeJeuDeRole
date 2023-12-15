@@ -1,0 +1,39 @@
+plateau.css
+
+.board {
+    display:flex;
+    flex-direction: row;
+}
+.zc-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.zc-cell {
+    height: 80px;
+    width: 80px;
+    background-color : green;
+    padding: 10px;
+    border: solid black 1px;
+}
+
+.globalDiv{
+    background-color: saddlebrown;
+    width: 80%;
+    height: 20em;
+}
+.interface1{
+    background-color: sandybrown;
+    width: 80%;
+    height: 8em;
+}
+.ZoneCombat{
+    background-color: darkgreen;
+    height:24em;
+    width:80%;
+}
+.zoneTxtCombat{
+    background-color:antiquewhite;
+    width:30%;
+    height:6em;
+}
