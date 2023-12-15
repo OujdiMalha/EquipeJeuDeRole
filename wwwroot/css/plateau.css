@@ -32,8 +32,16 @@ plateau.css
     height:24em;
     width:80%;
 }
-.zoneTxtCombat{
-    background-color:antiquewhite;
-    width:30%;
-    height:6em;
+.zoneTxtCombat {
+    background-color: antiquewhite;
+    width: 40%;
+    height: 4em;
+    position: relative;
+    top: 2em;
+    left: 4em;
+}
+listeAttaques {
+    background-color: antiquewhite;
+    width: 40%;
+    height: 4em;
 }
