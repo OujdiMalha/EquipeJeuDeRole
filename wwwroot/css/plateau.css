@@ -43,16 +43,22 @@ plateau.css
     left: 4em;*/
 }
 .listeAttaques {
+    display: inline-block;
     margin: 2em;
     background-color: antiquewhite;
     width: 40%;
     height: 4em;
 }
-    .listeAttaques > ul {
-        
+.listeAttaques > ul > li > button{
+       display:block;
+}
+.listeAttaques > ul > li > button:hover {
+    background-color:orangered;
+}
+    
+.listeAttaques > ul {
+        list-style-type: none;
     }
-    .listeAttaques > li {
-        display: inline-block;
-        padding: 2em;
-        list-style-type:none;
-    }
+.espAttac {
+    display: flex;
+}
