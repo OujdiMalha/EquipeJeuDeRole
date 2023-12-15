@@ -1,0 +1,63 @@
+@page "/Plateau"
+@using JeuDeRole.Pages
+
+<PageTitle>Plateau</PageTitle>
+<h3>Plateau</h3>
+
+<table class="plateau-container">
+    @for (int i = 0; i < 25; i++)
+    {
+        <tr>
+            @for (int j = 0; j < 25; j++)
+            {
+                <td class="plateau-cell">@AfficherContenuCellule(i, j)</td>
+            }
+        </tr>
+    }
+</table>
+
+@code {
+    Guerrier guerrier = new Guerrier();
+    Monstre monstre = new Monstre();
+    List<List<Entity>> entities = new List<List<Entity>>();
+
+    // Appel de cette méthode dans OnInitialized
+    protected override void OnInitialized()
+    {
+        // Initialisation du plateau
+        for (int i = 0; i < 25; i++)
+        {
+            entities.Add(new List<Entity>());
+            for (int j = 0; j < 25; j++)
+            {
+                entities[i].Add(null);
+            }
+        }
+
+        // Initialisation des entités
+        entities[guerrier.row][guerrier.col] = guerrier;
+        entities[monstre.row][monstre.col] = monstre;
+    }
+
+    // Méthode pour afficher le contenu de chaque cellule
+    string AfficherContenuCellule(int row, int col)
+    {
+        if (entities[row][col] == null)
+        {
+            return "0";
+        }
+        else if (entities[row][col] == guerrier)
+        {
+            return "1";
+        }
+        else if (entities[row][col] == monstre)
+        {
+            return "M";
+        }
+
+        return string.Empty;
+    }
+    
+    // Méthode pour déplacer les entités sur le plateau (à appeler dans le code-behind)
+    
+}

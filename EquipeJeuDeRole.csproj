@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entite\Monstres\" />
     <Folder Include="Entite\Objects\" />
   </ItemGroup>
 

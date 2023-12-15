@@ -1,5 +1,6 @@
 ﻿@page "/"
 
+
 <PageTitle>Index</PageTitle>
 <link rel="stylesheet" href="Index.razor.css" />
 
@@ -14,7 +15,9 @@
         <li>
             
             <ul>
-
+                <li><NavLink href="Plateau" class="btn btn-primary">Aller à la page Plateau</NavLink></li>
+                <li><NavLink href="ZoneCombat" class="btn btn-primary">Aller à la page Zone de Combat</NavLink></li>
+                
                 <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Guerrier")'>Guerrier</button></li>
                 <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Sorcier")'>Sorcier</button></li>
                 <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Archer")'>Archer</button></li>
