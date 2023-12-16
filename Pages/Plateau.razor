@@ -41,7 +41,7 @@
 
         // Initialisation des entités
         entities[guerrier.row][guerrier.col] = guerrier;
-        entities[monstre.row][monstre.col] = monstre;
+      //  entities[monstre.row][monstre.col] = monstre;
     }
 
     // Méthode pour afficher le contenu de chaque cellule
@@ -55,10 +55,10 @@
         {
             return "1";
         }
-        else if (entities[row][col] == monstre)
-        {
-            return "M";
-        }
+        // else if (entities[row][col] == monstre)
+        // {
+        //     return "M";
+        // }
 
         return string.Empty;
     }

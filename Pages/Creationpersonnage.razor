@@ -13,6 +13,7 @@
 <form @onsubmit="CreerPersonnage">
     <label for="classe">Classe:</label>
     <select id="classe" @bind="classeSelectionnee">
+        <option></option>
         <option value="Guerrier">Guerrier</option>
         <option value="Archer">Archer</option>
         <option value="Sorcier">Sorcier</option>
@@ -59,7 +60,7 @@
         EntityService.Entity = null;
         Console.WriteLine("ddddd");
         Console.WriteLine("hhhhh");
-       
+        
         
         switch (classeSelectionnee)
         {
