@@ -1,6 +1,12 @@
-namespace ConsoleApp1;
-
-public enum Races
+namespace EquipeJeuDeRole.Pages
 {
-    ELF,HUMAIN,ORC,NAIN
+
+    public enum Races
+    {
+        ELF,
+        HUMAIN,
+        ORC,
+        NAIN,
+        NULL
+    }
 }
