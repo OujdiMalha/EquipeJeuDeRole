@@ -4,17 +4,18 @@
 <PageTitle>Plateau</PageTitle>
 <h3>Plateau</h3>
 
-<table class="plateau-container">
-    @for (int i = 0; i < 25; i++)
+<div class="board">
+@for (int i = 0; i < 25; i++)
     {
-        <tr>
-            @for (int j = 0; j < 25; j++)
-            {
-                <td class="plateau-cell">@AfficherContenuCellule(i, j)</td>
-            }
-        </tr>
+<div class="zc-row">
+      @for (int j = 0; j < 25; j++)
+          {
+       <div class="zc-cell"></div>
+          }
+        </div>
     }
-</table>
+</div>
+
 
 @code {
     Guerrier guerrier = new Guerrier();
