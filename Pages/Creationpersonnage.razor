@@ -20,14 +20,16 @@
     </select>
 
     <label for="race">Race:</label>
+    
     <select id="race" @bind="raceSelectionnee">
+        
         @foreach (var race in Enum.GetValues(typeof(Races)))
         {
             if (race.ToString() != "NULL")
-            { 
+            {
                 <option value="@race">@race</option>
             }
-            
+
         }
     </select>
 
@@ -36,7 +38,7 @@
 
     <button type="submit">Créer Personnage</button>
 </form>
-<p></p>
+
 
 
 
@@ -60,14 +62,19 @@
         EntityService.Entity = null;
         Console.WriteLine("ddddd");
         Console.WriteLine("hhhhh");
-        
+       
         
         switch (classeSelectionnee)
         {
-            case "Guerrier":
-                Console.WriteLine("hhhhh");
+            case("Guerrier"):
+                Console.WriteLine("Je suis un guerrier");
+                
                 Guerrier guerrier = new Guerrier(raceSelectionnee, nomPersonnage);
+                
                 EntityService.Entity = guerrier;
+                Console.WriteLine(EntityService.Entity.Nom);
+                Console.WriteLine(EntityService.Entity.Race);
+                Console.WriteLine(EntityService.Entity);
                 break;
             /* case "Archer":
                 EntityService.Entity = new Archer(raceSelectionnee, nomPersonnage);
