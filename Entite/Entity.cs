@@ -1,20 +1,22 @@
-namespace JeuDeRole.Pages
+namespace EquipeJeuDeRole.Pages
 {
 
 
 
     public abstract class Entity
     {
-
+        
+        public Races Race { get; set; }
         public string Nom { get; set; }
         public int PointDeVie { get; set; }
         public int row { get; set; }
         public int col { get; set; }
 
-        public Entity(string aNom, int aPointDevie)
+        public Entity(string aNom, int aPointDevie,Races aRace)
         {
             Nom = aNom;
             PointDeVie = aPointDevie;
+            Race= aRace;
         }
 
         public abstract void Attaquer(Entity cible);
