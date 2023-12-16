@@ -31,6 +31,12 @@ h2 {
     border: 1px solid #fff;
 }
 
+ul.horizontal-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; /* Vous pouvez ajuster cette propriété en fonction de vos besoins */
+}
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -78,10 +84,23 @@ ol {
 
 /* Styles pour le bouton avec la classe "guArSo" */
 .guArSo {
+    width: 300px;
     background-color: #ffd700;
     color: #333333;
 }
-
+.btn-primary {
+    font-family: 'Exo', sans-serif; /* Une police moderne et géométrique avec une allure futuriste */
+    font-weight: bold; /* Texte en gras */
+    width: 420px; /* Ajout d'une largeur fixe (en pixels) */
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #C0C0C0;
+    color: #333333;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
 /* Styles pour le bouton avec la classe "precedente" */
 .precedente {
     background-color: #A9EAFE;
