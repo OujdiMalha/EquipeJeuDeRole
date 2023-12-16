@@ -1,21 +1,24 @@
-using JeuDeRole.Pages;
-
-public class Guerrier: Entity
+namespace EquipeJeuDeRole.Pages
 {
-    
-    
-    public int Force{ get; set; }
-    
-    public Guerrier(string aNom = "GUERRIER") : base(aNom, 20)
+
+    public class Guerrier : Entity
     {
-        Force = 6;
-    }
 
 
-   
+        public int Force { get; set; }
 
-    public override void Attaquer(Entity cible)
-    {
-        Console.WriteLine("Le guerrier attaque !");
+        public Guerrier(Races aRace = Races.NULL, string aNom = "GUERRIER") : base(aNom, 20,aRace)
+        {
+            Force = 6;
+            
+        }
+
+
+
+
+        public override void Attaquer(Entity cible)
+        {
+            Console.WriteLine("Le guerrier attaque !");
+        }
     }
 }
