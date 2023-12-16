@@ -8,19 +8,20 @@
 </ul>
 
 <div class="board">
-@for (int i = 0; i < 25; i++)
+    @for (int i = 0; i < terrain1.nbRow; i++)
     {
-<div class="zc-row">
-      @for (int j = 0; j < 25; j++)
+    <div class="zc-row">
+      @for (int j = 0; j < terrain1.nbCol; j++)
           {
                 <div class="zc-cell" id=@(i+"-"+j)></div>
           }
-        </div>
+    </div>
     }
 </div>
 
 
 @code {
+    Terrain terrain1 = new();
     Guerrier guerrier = new Guerrier();
     Monstre monstre = new Monstre();
     List<List<Entity>> entities = new List<List<Entity>>();
