@@ -1,7 +1,6 @@
 @page "/creationpersonnage"
 @namespace EquipeJeuDeRole.Pages
 @inject EntityService EntityService
-
 @inject NavigationManager NavigationManager
 
 
@@ -69,7 +68,7 @@
             case("Guerrier"):
                 Console.WriteLine("Je suis un guerrier");
                 
-                Guerrier guerrier = new Guerrier(raceSelectionnee, nomPersonnage);
+                Guerrier guerrier = new Guerrier(raceSelectionnee,nomPersonnage);
                 
                 EntityService.Entity = guerrier;
                 Console.WriteLine(EntityService.Entity.Nom);
@@ -88,7 +87,7 @@
                 break;
         }
 
-        NavigationManager.NavigateTo("Exploration");
+        NavigationManager.NavigateTo("Plateau");
     }
 
 }

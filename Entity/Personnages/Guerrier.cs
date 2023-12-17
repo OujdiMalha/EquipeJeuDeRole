@@ -10,7 +10,6 @@ namespace EquipeJeuDeRole.Pages
         public Guerrier(Races aRace = Races.NULL, string aNom = "GUERRIER") : base(aNom, 20,aRace)
         {
             Force = 6;
-            
         }
 
 

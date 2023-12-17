@@ -1,17 +1,20 @@
-
-using JeuDeRole.Pages;
-
-public class Monstre : Entity
+namespace EquipeJeuDeRole.Pages
 {
-    
-    public override void Attaquer(Entity cible)
-    {
-        Console.WriteLine("Le monstre attaque !");
-        throw new NotImplementedException();
-    }
 
-    public Monstre(string aNom = "MONSTRE"): base(aNom,20)
+
+
+    public class Monstre : Entity
     {
-        aNom = "Monstre";
+
+        public override void Attaquer(Entity cible)
+        {
+            Console.WriteLine("Le monstre attaque !");
+            throw new NotImplementedException();
+        }
+
+        public Monstre(string aNom = "MONSTRE", Races aRaces = Races.NULL) : base(aNom, 20, aRaces)
+        {
+            aNom = "Monstre";
+        }
     }
 }
