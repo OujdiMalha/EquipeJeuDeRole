@@ -7,14 +7,13 @@
 <ul>
     <li><NavLink href="/" class="btn btn-primary">Quitter le jeu</NavLink></li>
 </ul>
-
 <div class="board" @onkeydown="HandleKeyDown" tabindex="0" autofocus style="outline:none">
-    @for (int i = -1; i < 2; i++)
+    @for (int i = -4; i < 6; i++) // Changer la plage de -1 à 1 à -4 à 5 pour un plateau 10x10
     {
         <div class="zc-row">
-            @for (int j = -1; j < 2; j++)
+            @for (int j = -4; j < 6; j++) // Changer la plage de -1 à 1 à -4 à 5 pour un plateau 10x10
             {
-                <div class="zc-cell" id=@((personnage.row+i)+"-"+(personnage.col+j))>
+                <div class="zc-cell" id=@((personnage.row + i) + "-" + (personnage.col + j))>
                     @AfficherContenuCellule(i, j)
                 </div>
             }
