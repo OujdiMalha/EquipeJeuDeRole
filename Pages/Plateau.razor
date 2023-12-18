@@ -27,7 +27,7 @@
     public Terrain terrain1 = new Terrain();
     private Entity personnage;
     private Entity _monstre;
-    
+
 
     protected override void OnInitialized()
     {
@@ -35,7 +35,7 @@
         _monstre = new Monstre();
         _monstre.row = 49;
         _monstre.col = 49;
-        
+
         // Récupere entity sauvegarder
         personnage.row = (terrain1.plateau.GetLength(0))/2;
         // Perssonage au millieu du tableau [50][50]
@@ -45,7 +45,10 @@
         terrain1.plateau[49, 49] = _monstre;
         Console.WriteLine(terrain1.plateau.GetLength(0));
     }
-
+    string ObtenirClasseCellule(int row, int col)
+    {
+        return "zc-cell";
+    }
     string AfficherContenuCellule(int row, int col)
     {
         int targetRow = personnage.row + row;
@@ -95,19 +98,19 @@
 
         switch (touche.Key)
         {
-            case "ArrowLeft":
+            case "ArrowRight":
                 Console.WriteLine("Je bouge à gauche ");
                 targetCol--;
                 break;
-            case "ArrowRight":
+            case "ArrowLeft":
                 Console.WriteLine("Je bouge à droite ");
                 targetCol++;
                 break;
-            case "ArrowUp":
+            case "ArrowDown":
                 Console.WriteLine("Je bouge en haut ");
                 targetRow--;
                 break;
-            case "ArrowDown":
+            case "ArrowUp":
                 Console.WriteLine("Je bouge en bas ");
                 targetRow++;
                 break;
