@@ -1,12 +1,14 @@
-namespace EquipeJeuDeRole.Pages
+using EquipeJeuDeRole.Pages;
+
+namespace JeuDeRole.Pages
 {
 
 
 
     public abstract class Entity
     {
-        
-        public Races Race { get; set; }
+        public Races Race;
+
         public string Nom { get; set; }
         public int PointDeVie { get; set; }
         public int row { get; set; }
@@ -14,43 +16,13 @@ namespace EquipeJeuDeRole.Pages
 
         public Entity(string aNom, int aPointDevie,Races aRace)
         {
+            Race = aRace;
             Nom = aNom;
             PointDeVie = aPointDevie;
-            Race= aRace;
         }
 
         public abstract void Attaquer(Entity cible);
         //methode de deplacement
-
-        public void findCol(List<List<Entity>> entities)
-        {
-            for (int i = 0; i < 25; i++)
-            {
-                for (int j = 0; j < 25; j++)
-                {
-                    if (entities[i][j] == this)
-                    {
-                        col = j;
-                    }
-                }
-            }
-        }
-
-
-        public void findRow(List<List<Entity>> entities)
-        {
-            for (int i = 0; i < 25; i++)
-            {
-                for (int j = 0; j < 25; j++)
-                {
-                    if (entities[i][j] == this)
-                    {
-                        row = i;
-
-                    }
-                }
-            }
-        }
 
         public void Deplacer(Deplacement direction)
         {

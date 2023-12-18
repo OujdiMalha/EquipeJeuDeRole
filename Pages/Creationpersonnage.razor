@@ -1,0 +1,93 @@
+@page "/creationpersonnage"
+@namespace EquipeJeuDeRole.Pages
+@inject EntityService EntityService
+@inject NavigationManager NavigationManager
+
+
+
+
+
+<h3>Création du personnage</h3>
+
+<form @onsubmit="CreerPersonnage">
+    <label for="classe">Classe:</label>
+    <select id="classe" @bind="classeSelectionnee">
+        <option></option>
+        <option value="Guerrier">Guerrier</option>
+        <option value="Archer">Archer</option>
+        <option value="Sorcier">Sorcier</option>
+    </select>
+
+    <label for="race">Race:</label>
+    
+    <select id="race" @bind="raceSelectionnee">
+        
+        @foreach (var race in Enum.GetValues(typeof(Races)))
+        {
+            if (race.ToString() != "NULL")
+            {
+                <option value="@race">@race</option>
+            }
+
+        }
+    </select>
+
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" @bind="nomPersonnage" />
+
+    <button type="submit">Créer Personnage</button>
+</form>
+
+
+
+
+@code {
+    
+    private string classeSelectionnee;
+    private Races raceSelectionnee;
+    private string nomPersonnage;
+
+
+   
+
+    public void CreerPersonnage()
+    {
+        // Vous pouvez utiliser les valeurs sélectionnées ici pour créer et initialiser votre personnage
+        
+
+        // Exemple de création de personnage en fonction des valeurs sélectionnées
+    
+        // Assurez-vous que EntityService.Entity est initialisé avant le switch
+        EntityService.Entity = null;
+        Console.WriteLine("ddddd");
+        Console.WriteLine("hhhhh");
+       
+        
+        switch (classeSelectionnee)
+        {
+            case("Guerrier"):
+                Console.WriteLine("Je suis un guerrier");
+                
+                Guerrier guerrier = new Guerrier(raceSelectionnee,nomPersonnage);
+                
+                EntityService.Entity = guerrier;
+                Console.WriteLine(EntityService.Entity.Nom);
+                Console.WriteLine(EntityService.Entity.Race);
+                Console.WriteLine(EntityService.Entity);
+                break;
+            /* case "Archer":
+                EntityService.Entity = new Archer(raceSelectionnee, nomPersonnage);
+                break;
+            case "Sorcier":
+                EntityService.Entity = new Sorcier(raceSelectionnee, nomPersonnage);
+                break;
+            // Ajoutez d'autres cas selon vos classes
+            */
+            default:
+                break;
+        }
+
+        NavigationManager.NavigateTo("Plateau");
+    }
+
+}

@@ -1,65 +1,155 @@
 @page "/Plateau"
-@using JeuDeRole.Pages
+@namespace EquipeJeuDeRole.Pages
+@inject EntityService EntityService
 
 <PageTitle>Plateau</PageTitle>
 <h3>Plateau</h3>
-
-<div class="board">
-    @for (int i = 0; i < terrain1.nbRow; i++)
+<ul>
+    <li><NavLink href="/" class="btn btn-primary">Quitter le jeu</NavLink></li>
+</ul>
+<div class="board" @onkeydown="HandleKeyDown" tabindex="0" autofocus style="outline:none">
+    @for (int i = -4; i < 6; i++) // Changer la plage de -1 à 1 à -4 à 5 pour un plateau 10x10
     {
-    <div class="zc-row">
-      @for (int j = 0; j < terrain1.nbCol; j++)
-          {
-                <div class="zc-cell" id=@(i+"-"+j)></div>
-          }
-    </div>
+        <div class="zc-row">
+            @for (int j = -4; j < 6; j++) // Changer la plage de -1 à 1 à -4 à 5 pour un plateau 10x10
+            {
+                <div class="zc-cell" id=@((personnage.row + i) + "-" + (personnage.col + j))>
+                    @AfficherContenuCellule(i, j)
+                </div>
+            }
+        </div>
     }
 </div>
 
 
 @code {
-    Terrain terrain1 = new();
-    Guerrier guerrier = new Guerrier();
-    Monstre monstre = new Monstre();
-    List<List<Entity>> entities = new List<List<Entity>>();
 
-    // Appel de cette méthode dans OnInitialized
+    public Terrain terrain1 = new Terrain();
+    private Entity personnage;
+    private Entity _monstre;
+    
+
     protected override void OnInitialized()
     {
-        // Initialisation du plateau
-        for (int i = 0; i < 25; i++)
-        {
-            entities.Add(new List<Entity>());
-            for (int j = 0; j < 25; j++)
-            {
-                entities[i].Add(null);
-            }
-        }
-
-        // Initialisation des entités
-        entities[guerrier.row][guerrier.col] = guerrier;
-        entities[monstre.row][monstre.col] = monstre;
+        personnage = EntityService.Entity;
+        _monstre = new Monstre();
+        _monstre.row = 49;
+        _monstre.col = 49;
+        
+        // Récupere entity sauvegarder
+        personnage.row = (terrain1.plateau.GetLength(0))/2;
+        // Perssonage au millieu du tableau [50][50]
+        personnage.col = (terrain1.plateau.GetLength(0))/2;
+        // Perssonage au millieu du tableau [50][50]
+        terrain1.plateau[personnage.row, personnage.col] = personnage;
+        terrain1.plateau[49, 49] = _monstre;
+        Console.WriteLine(terrain1.plateau.GetLength(0));
     }
 
-    // Méthode pour afficher le contenu de chaque cellule
     string AfficherContenuCellule(int row, int col)
     {
-        if (entities[row][col] == null)
+        int targetRow = personnage.row + row;
+        int targetCol = personnage.col + col;
+        if (targetRow >= 0 && targetRow < terrain1.plateau.GetLength(0) && targetCol >= 0 && targetCol < terrain1.plateau.GetLength(1))
         {
-            return "0";
+            Entity cellEntity = terrain1.plateau[personnage.row + row, personnage.col + col];
+
+            if (cellEntity != null)
+            {
+    // Vérifiez le type de l'entité
+                if (cellEntity.GetType() == typeof(Guerrier))
+                {
+    // Si c'est un Guerrier, retournez "P" par exemple
+                    return "P";
+                }
+                else if (cellEntity.GetType() == typeof(Monstre))
+                {
+    // Si c'est un Monstre, retournez "M" par exemple
+                    return "M";
+                }
+                else
+                {
+    // Autre type d'entité, vous pouvez ajuster le symbole selon vos besoins
+                    return "X";
+                }
+            }
+            else
+            {
+    // Si l'entité est null, affichez autre chose
+                return "0";
+            }
+
+
         }
-        else if (entities[row][col] == guerrier)
+        else
         {
-            return "1";
+            return "Out of bound";
         }
-        else if (entities[row][col] == monstre)
+    }
+
+
+    private void HandleKeyDown(KeyboardEventArgs touche)
+    {
+        int targetRow = personnage.row;
+        int targetCol = personnage.col;
+
+        switch (touche.Key)
         {
-            return "M";
+            case "ArrowLeft":
+                Console.WriteLine("Je bouge à gauche ");
+                targetCol--;
+                break;
+            case "ArrowRight":
+                Console.WriteLine("Je bouge à droite ");
+                targetCol++;
+                break;
+            case "ArrowUp":
+                Console.WriteLine("Je bouge en haut ");
+                targetRow--;
+                break;
+            case "ArrowDown":
+                Console.WriteLine("Je bouge en bas ");
+                targetRow++;
+                break;
         }
 
-        return string.Empty;
+    // Vérifiez si les nouvelles coordonnées sont dans les limites du tableau
+        if (targetRow >= 0 && targetRow < terrain1.plateau.GetLength(0) && targetCol >= 0 && targetCol < terrain1.plateau.GetLength(1))
+        {
+            terrain1.plateau[personnage.row, personnage.col] = null;
+            personnage.row = targetRow;
+            personnage.col = targetCol;
+            terrain1.plateau[personnage.row, personnage.col] = personnage;
+        }
+        else
+        {
+            Console.WriteLine("Déplacement en dehors des limites du tableau");
+        }
     }
+
     
-    // Méthode pour déplacer les entités sur le plateau (à appeler dans le code-behind)
-    
+    public void Deplacer(Deplacement direction)
+    {
+        switch (direction)
+        {
+            case Deplacement.LEFT:
+                if (personnage.col > 0) // Vérifie si le déplacement à gauche est possible
+                    personnage.col--;
+                break;
+            case Deplacement.RIGHT:
+                if (personnage.col < terrain1.plateau.GetLength(1) - 1) // Vérifie si le déplacement à droite est possible
+                    personnage.col++;
+                break;
+            case Deplacement.UP:
+                if (personnage.row > 0) // Vérifie si le déplacement vers le haut est possible
+                    personnage.row--;
+                break;
+            case Deplacement.DOWN:
+                if (personnage.row < terrain1.plateau.GetLength(0) - 1) // Vérifie si le déplacement vers le bas est possible
+                    personnage.row++;
+                break;
+        }
+    }
+
+
 }

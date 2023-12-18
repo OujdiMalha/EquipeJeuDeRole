@@ -1,47 +1,45 @@
 ﻿@page "/"
-
-
+@inject NavigationManager nav
 <PageTitle>Index</PageTitle>
 <link rel="stylesheet" href="Index.razor.css" />
 
 <div>
-    <h2> Options </h2>
-    <ul>
+    <h2>Jeu de rôle</h2>
+    <ul class="horizontal-list">
         <li>
-            <button @onclick="() => NouvellePartie()">Nouvelle Partie : choisir votre personnage</button>
+            <button @onclick="NouvellePartie">Nouvelle Partie : choisir votre personnage</button>
         </li>
     </ul>
+
+    <!-- Autres listes commentées -->
+    <!--
+    <ul class="horizontal-list">
+        <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Guerrier")'>Guerrier</button></li>
+        <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Sorcier")'>Sorcier</button></li>
+        <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Archer")'>Archer</button></li>
+    </ul>
+    -->
+
+    <ul>
+        <li><NavLink href="Plateau" class="btn btn-primary">Aller à la page Plateau</NavLink></li>
+        <li><NavLink href="ZoneCombat" class="btn btn-primary">Aller à la page Zone de Combat</NavLink></li>
+    </ul>
+
     <ul>
         <li>
-            
-            <ul>
-                <li><NavLink href="Plateau" class="btn btn-primary">Aller à la page Plateau</NavLink></li>
-                <li><NavLink href="ZoneCombat" class="btn btn-primary">Aller à la page Zone de Combat</NavLink></li>
-                
-                <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Guerrier")'>Guerrier</button></li>
-                <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Sorcier")'>Sorcier</button></li>
-                <li><button class="guArSo" @onclick='() => ChoisirPersonnage("Archer")'>Archer</button></li>
-            </ul>
+            <button class="precedente" @onclick="ChargerPartie">Partie précédemment sauvegardée</button>
         </li>
         <li>
-            <button class="precedente" @onclick="() => ChargerPartie()">Partie précédemment sauvegardée</button>
-        </li>
-        <li>
-            <button class="quitter" @onclick="() => Quitter()">Quitter le jeu</button>
+            <button class="quitter" @onclick="Quitter">Quitter le jeu</button>
         </li>
     </ul>
-</div>
-
-<h2>Le Terrain de Jeu de Rôle</h2>
-
-<div class="game-grid">
-    @GenerateGrid(100, 100)
 </div>
 
 @code {
     private void NouvellePartie()
     {
         // Logique pour commencer une nouvelle partie
+        nav.NavigateTo("creationpersonnage");
     }
 
     private void ChoisirPersonnage(string personnage)
@@ -67,29 +65,5 @@
     private void Quitter()
     {
         // Logique pour quitter le jeu
-    }
-
-    // Fonction pour générer la grille en C#
-    private RenderFragment GenerateGrid(int rows, int columns)
-    {
-        RenderFragment grid = builder =>
-        {
-            builder.OpenElement(0, "div");
-            builder.AddAttribute(1, "class", "game-grid");
-
-            for (int row = 0; row < rows; row++)
-            {
-                for (int col = 0; col < columns; col++)
-                {
-                    builder.OpenElement(2, "div");
-                    builder.AddAttribute(3, "class", "grid-cell");
-                    builder.CloseElement();
-                }
-            }
-
-            builder.CloseElement();
-        };
-
-        return grid;
     }
 }
