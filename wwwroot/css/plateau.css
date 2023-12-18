@@ -1,6 +1,6 @@
 plateau.css
 
-.board {
+.plateau {
     display:flex;
     flex-direction: row;
 }
@@ -8,10 +8,9 @@ plateau.css
     display: flex;
     flex-direction: row;
 }
-
 .zc-cell {
-    height: 35px;
-    width: 35px;
+    height: 60px;
+    width: 60px;
     background-color : green;
     padding: 10px;
     border: solid black 1px;
@@ -63,4 +62,18 @@ plateau.css
     width:100%;
     margin: 2em;
     display: flex;
+}
+.cellPersonnage {
+    height: 60px;
+    width: 60px;
+    background-color: blue;
+    padding: 10px;
+    border: solid black 1px;
+}
+.cellEnnemi {
+    height: 60px;
+    width: 60px;
+    background-color: darkred;
+    padding: 10px;
+    border: solid black 1px;
 }
