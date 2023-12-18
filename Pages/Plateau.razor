@@ -47,6 +47,8 @@
     }
     string ObtenirClasseCellule(int row, int col)
     {
+        int targetRow = personnage.row + row;
+        int targetCol = personnage.col + col;
         return "zc-cell";
     }
     string AfficherContenuCellule(int row, int col)
@@ -98,19 +100,19 @@
 
         switch (touche.Key)
         {
-            case "ArrowRight":
+            case "ArrowLeft":
                 Console.WriteLine("Je bouge à gauche ");
                 targetCol--;
                 break;
-            case "ArrowLeft":
+            case "ArrowRight":
                 Console.WriteLine("Je bouge à droite ");
                 targetCol++;
                 break;
-            case "ArrowDown":
+            case "ArrowUp":
                 Console.WriteLine("Je bouge en haut ");
                 targetRow--;
                 break;
-            case "ArrowUp":
+            case "ArrowDown":
                 Console.WriteLine("Je bouge en bas ");
                 targetRow++;
                 break;
