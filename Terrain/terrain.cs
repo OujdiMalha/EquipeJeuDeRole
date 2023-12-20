@@ -1,15 +1,26 @@
 using EquipeJeuDeRole.Pages;
 
-public class Terrain
+namespace EquipeJeuDeRole.Pages
 {
-
-    public Entity[,] plateau;
-    public int nbRow = 100;
-    public int nbCol = 100;
-
-    public Terrain()
+    public class Terrain
     {
-        plateau = new Entity[nbRow, nbCol];
+
+        public Entity?[,] plateau;
+        public int nbRow = 100;
+        public int nbCol = 100;
+
+        public Terrain()
+        {
+            plateau = new Entity?[nbRow, nbCol];
+
+            for (int i = 0; i < nbRow; i++)
+            {
+                for (int j = 0; j < nbCol; j++)
+                {
+                    plateau[i, j] = null;
+                }
+            }
+        }
     }
 }
 

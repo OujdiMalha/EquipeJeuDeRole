@@ -1,29 +1,28 @@
-using EquipeJeuDeRole.Pages;
+using System.Text.Json.Serialization;
 
-namespace JeuDeRole.Pages
+namespace EquipeJeuDeRole.Pages
 {
-
-
-
-    public abstract class Entity
+    public class Entity
     {
-        public Races Race;
-
+        public Races Race { get; set; }
         public string Nom { get; set; }
-        public int PointDeVie { get; set; }
+        public int PointDeVie = 20;
         public int row { get; set; }
-        public int col { get; set; }
+        public int col { get; set; } 
+        [JsonConverter(typeof(JsonStringEnumConverter))]public Classes Classes { get; set; }
 
-        public Entity(string aNom, int aPointDevie,Races aRace)
+
+
+        public Entity()
         {
-            Race = aRace;
-            Nom = aNom;
-            PointDeVie = aPointDevie;
+        }
+        
+        public virtual void Attaquer(Entity cible)
+        {
+            throw new NotImplementedException();
         }
 
-        public abstract void Attaquer(Entity cible);
-        //methode de deplacement
-
+        // Méthode de déplacement
         public void Deplacer(Deplacement direction)
         {
             switch (direction)
@@ -42,7 +41,5 @@ namespace JeuDeRole.Pages
                     break;
             }
         }
-
-
     }
 }

@@ -1,91 +1,183 @@
-@page "/Plateau"
+@page "/plateau"
 @namespace EquipeJeuDeRole.Pages
+@using Microsoft.JSInterop
+@using System.Text.Json
+@using System.Text.Json.Serialization
 @inject EntityService EntityService
+@inject IJSRuntime JsRuntime
 
-<PageTitle>Plateau</PageTitle>
-<h3>Plateau</h3>
-<ul>
-    <li><NavLink href="/" class="btn btn-primary">Quitter le jeu</NavLink></li>
-</ul>
-<div class="board" @onkeydown="HandleKeyDown" tabindex="0" autofocus style="outline:none">
-    @for (int i = -4; i < 6; i++) // Changer la plage de -1 à 1 à -4 à 5 pour un plateau 10x10
-    {
-        <div class="zc-row">
-            @for (int j = -4; j < 6; j++) // Changer la plage de -1 à 1 à -4 à 5 pour un plateau 10x10
-            {
-                <div class="zc-cell" id=@((personnage.row + i) + "-" + (personnage.col + j))>
-                    @AfficherContenuCellule(i, j)
-                </div>
-            }
-        </div>
-    }
-</div>
+
+
+
 
 
 @code {
-
-    public Terrain terrain1 = new Terrain();
-    private Entity personnage;
-    private Entity _monstre;
+    
     
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        personnage = EntityService.Entity;
-        _monstre = new Monstre();
-        _monstre.row = 49;
-        _monstre.col = 49;
         
-        // Récupere entity sauvegarder
-        personnage.row = (terrain1.plateau.GetLength(0))/2;
-        // Perssonage au millieu du tableau [50][50]
-        personnage.col = (terrain1.plateau.GetLength(0))/2;
-        // Perssonage au millieu du tableau [50][50]
-        terrain1.plateau[personnage.row, personnage.col] = personnage;
-        terrain1.plateau[49, 49] = _monstre;
-        Console.WriteLine(terrain1.plateau.GetLength(0));
+        try
+        {
+            if (JsRuntime == null || EntityService == null)
+            {
+                Console.WriteLine("JSRuntime or EntityService is null.");
+                return;
+            }
+
+            var serializedData = await JsRuntime.InvokeAsync<string>("localStorage.getItem", "pageStateData");
+
+            if (!string.IsNullOrEmpty(serializedData))
+            {
+                Console.WriteLine($"Données récupérées de localStorage : {serializedData}");
+                var options = new JsonSerializerOptions
+                {
+                    Converters = { new JsonStringEnumConverter()}
+                };
+                var plateauState = JsonSerializer.Deserialize<PlateauState>(serializedData, options);
+
+                terrain1 = plateauState.Terrain;
+                if (plateauState.Entity!=null)
+                {
+                    switch (plateauState.Entity.Classes)
+                    {
+                        case Classes.GUERRIER:
+                            personnage = JsonSerializer.Deserialize<Guerrier>(JsonSerializer.Serialize(plateauState.Entity, options), options);
+                            break;
+                            case Classes.ARCHER:
+                                break;
+                                case Classes.MAGE:
+                                break;
+                                    
+                    }
+                }
+                
+                monstre = plateauState.Monstre;
+                Console.WriteLine($"Personnage : {personnage}");
+                Console.WriteLine($"Monstre : {plateauState.Monstre}");
+                Console.WriteLine($"Terrain : {plateauState.Terrain}");
+
+                if (personnage != null)
+                {
+                    terrain1.plateau[personnage.row, personnage.col] = personnage;
+                }
+
+                if (monstre != null)
+                {
+                    terrain1.plateau[monstre.row, monstre.col] = monstre;
+                }
+                Sauvegarde();
+            }
+            else
+            {
+                personnage = EntityService.Entity;
+                terrain1 = new Terrain();
+                personnage.row = terrain1.plateau.GetLength(0) / 2;
+                personnage.col = terrain1.plateau.GetLength(1) / 2;
+                monstre = new Monstre();
+                monstre.row = 49;
+                monstre.col = 49;
+
+                terrain1.plateau[personnage.row, personnage.col] = personnage;
+                terrain1.plateau[monstre.row, monstre.col] = monstre;
+
+                Console.WriteLine(terrain1.plateau.GetLength(0));
+                Sauvegarde();
+            }
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur dans OnInitializedAsync : {ex.Message}");
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+
+
+    public void Sauvegarde()
+    {
+        var plateauState = new
+        {
+            Entity = personnage,
+            Monstre= monstre,
+            Terrain = terrain1
+        };
+        
+        try
+        {
+            var options = new JsonSerializerOptions
+            {
+                Converters = { new JsonStringEnumConverter() }
+            };
+            var serializedData = System.Text.Json.JsonSerializer.Serialize(plateauState, options);
+            JsRuntime.InvokeVoidAsync("localStorage.setItem", "pageStateData", serializedData);
+        }
+        catch (JsonException ex)
+        {
+            Console.WriteLine($"Erreur de sérialisation JSON : {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur lors de la sauvegarde : {ex.Message}");
+        }
     }
 
     string AfficherContenuCellule(int row, int col)
     {
-        int targetRow = personnage.row + row;
-        int targetCol = personnage.col + col;
-        if (targetRow >= 0 && targetRow < terrain1.plateau.GetLength(0) && targetCol >= 0 && targetCol < terrain1.plateau.GetLength(1))
+        try
         {
-            Entity cellEntity = terrain1.plateau[personnage.row + row, personnage.col + col];
+            int targetRow = personnage?.row + row ?? 0;
+            int targetCol = personnage?.col + col ?? 0;
 
-            if (cellEntity != null)
+            if (terrain1 != null &&
+                terrain1.plateau != null &&
+                targetRow >= 0 && targetRow < terrain1.plateau.GetLength(0) &&
+                targetCol >= 0 && targetCol < terrain1.plateau.GetLength(1))
             {
+                Entity? cellEntity = terrain1.plateau[targetRow, targetCol];
+
+                if (cellEntity != null)
+                {
     // Vérifiez le type de l'entité
-                if (cellEntity.GetType() == typeof(Guerrier))
-                {
+                    if (cellEntity.GetType() == typeof(Guerrier))
+                    {
     // Si c'est un Guerrier, retournez "P" par exemple
-                    return "P";
-                }
-                else if (cellEntity.GetType() == typeof(Monstre))
-                {
+                        return "P";
+                    }
+                    else if (cellEntity.GetType() == typeof(Monstre))
+                    {
     // Si c'est un Monstre, retournez "M" par exemple
-                    return "M";
+                        return "M";
+                    }
+                    else
+                    {
+    // Autre type d'entité, ajustez le symbole selon vos besoins
+                        return "X";
+                    }
                 }
                 else
                 {
-    // Autre type d'entité, vous pouvez ajuster le symbole selon vos besoins
-                    return "X";
+    // Si l'entité est null, affichez autre chose
+                    return "0";
                 }
             }
             else
             {
-    // Si l'entité est null, affichez autre chose
-                return "0";
+                Console.WriteLine($"Erreur dans AfficherContenuCellule : terrain1 ou plateau est null, targetRow={targetRow}, targetCol={targetCol}");
+                return "*";
             }
-
-
         }
-        else
+        catch (Exception ex)
         {
-            return "Out of bound";
+            Console.WriteLine($"Erreur dans AfficherContenuCellule : {ex.Message}");
+            return "*";
         }
     }
+
+
 
 
     private void HandleKeyDown(KeyboardEventArgs touche)
@@ -120,6 +212,8 @@
             personnage.row = targetRow;
             personnage.col = targetCol;
             terrain1.plateau[personnage.row, personnage.col] = personnage;
+            Sauvegarde();
+            StateHasChanged();
         }
         else
         {
@@ -150,6 +244,41 @@
                 break;
         }
     }
-
+    
+    public Terrain? terrain1;
+    public Entity? personnage;
+    public Entity? monstre;
+    
+  
 
 }
+
+<PageTitle>Plateau</PageTitle>
+<h3>Plateau</h3>
+<ul>
+    <li><NavLink href="/" class="btn btn-primary">Quitter le jeu</NavLink></li>
+</ul>
+
+@if (personnage != null)
+{
+    <div class="board" @onkeydown="HandleKeyDown" tabindex="0" autofocus style="outline:none">
+        @for (int i = -4; i < 6; i++)
+        {
+            <div class="zc-row">
+                @for (int j = -4; j < 6; j++)
+                {
+                    <div class="zc-cell" id=@($"{personnage.row + i}-{personnage.col + j}")>
+                        @AfficherContenuCellule(i, j)
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <div>
+        <div>Position : @($"{personnage.row}-{personnage.col}")</div>
+        <div>PV : @personnage.PointDeVie</div>
+        </div>
+
+}
+
+   
