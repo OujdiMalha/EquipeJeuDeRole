@@ -1,13 +1,35 @@
-/*public class Archer
+using EquipeJeuDeRole.Pages;
+
+public class Archer: Entity
 {
-    int classeID = 1;
-    int autorisObject;
-    int equilPdeVie;
-    int precision;
-    int nombreFleches;
-    int degatsMin() { };
-    int degatsMax() { };
-    void attaquerADistance() { };
-    void rechargerFleches() { };
+    
+    
+        
+
+
+    public Archer()
+    {
+           
+        Nom = "ARCHER";
+        Race = Races.NULL;
+        PointDeVie = 20;
+        Classes = Classes.ARCHER;
+
+
+    }
+
+    public Archer(Races aRace = Races.NULL, string aNom = "ARCHER")
+    {
+        Nom = aNom;
+        Race = aRace;
+        PointDeVie = 20;
+        
+    }
+        
+
+
+    public override void Attaquer(Entity cible)
+    {
+        Console.WriteLine("L'archer attaque !");
+    }
 }
-*/

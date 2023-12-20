@@ -45,9 +45,10 @@
                         case Classes.GUERRIER:
                             personnage = JsonSerializer.Deserialize<Guerrier>(JsonSerializer.Serialize(plateauState.Entity, options), options);
                             break;
-                            case Classes.ARCHER:
+                        case Classes.ARCHER:
+                            personnage = JsonSerializer.Deserialize<Archer>(JsonSerializer.Serialize(plateauState.Entity, options), options);
                                 break;
-                                case Classes.MAGE:
+                        case Classes.MAGE:
                                 break;
                                     
                     }
@@ -141,26 +142,26 @@
 
                 if (cellEntity != null)
                 {
-    // Vérifiez le type de l'entité
-                    if (cellEntity.GetType() == typeof(Guerrier))
+                    // Vérifiez le type de l'entité
+                    if (cellEntity.GetType() == typeof(Guerrier) || cellEntity.GetType() ==typeof(Archer))
                     {
-    // Si c'est un Guerrier, retournez "P" par exemple
+                        // Si c'est un Entity Classe, retournez "P" par exemple
                         return "P";
                     }
                     else if (cellEntity.GetType() == typeof(Monstre))
                     {
-    // Si c'est un Monstre, retournez "M" par exemple
+                        // Si c'est un Monstre, retournez "M" par exemple
                         return "M";
                     }
                     else
                     {
-    // Autre type d'entité, ajustez le symbole selon vos besoins
+                        // Autre type d'entité, ajustez le symbole selon vos besoins
                         return "X";
                     }
                 }
                 else
                 {
-    // Si l'entité est null, affichez autre chose
+                    // Si l'entité est null, affichez autre chose
                     return "0";
                 }
             }
@@ -206,24 +207,54 @@
         }
 
     // Vérifiez si les nouvelles coordonnées sont dans les limites du tableau
-        if (targetRow >= 0 && targetRow < terrain1.plateau.GetLength(0) && targetCol >= 0 && targetCol < terrain1.plateau.GetLength(1))
+        if (IsDansLimites(targetRow, targetCol))
         {
-            terrain1.plateau[personnage.row, personnage.col] = null;
-            personnage.row = targetRow;
-            personnage.col = targetCol;
-            terrain1.plateau[personnage.row, personnage.col] = personnage;
-            Sauvegarde();
-            StateHasChanged();
+    // Vérifiez s'il y a un monstre à la nouvelle position
+            Entity? targetEntity = terrain1.plateau[targetRow, targetCol];
+
+            if (targetEntity != null && targetEntity.GetType() == typeof(Monstre))
+            {
+    // Si un monstre est rencontré, redirigez vers la zone de combat
+                AfficherZoneCombat();
+            }
+            else
+            {
+                DeplacerVersNouvellePosition(targetRow, targetCol);
+            }
         }
         else
         {
             Console.WriteLine("Déplacement en dehors des limites du tableau");
         }
     }
+    
+    private bool IsDansLimites(int row, int col)
+    {
+        return row >= 0 && row < terrain1.plateau.GetLength(0) && col >= 0 && col < terrain1.plateau.GetLength(1);
+    }
 
+    private void DeplacerVersNouvellePosition(int targetRow, int targetCol)
+    {
+        terrain1.plateau[personnage.row, personnage.col] = null;
+        personnage.row = targetRow;
+        personnage.col = targetCol;
+        terrain1.plateau[personnage.row, personnage.col] = personnage;
+        Sauvegarde();
+        StateHasChanged();
+    }
+
+    private void AfficherZoneCombat()
+    {
+        showPlateau = false;
+    // Ajoutez toute logique supplémentaire liée à la transition vers la zone de combat ici
+    // Par exemple, vous voudrez peut-être configurer l'environnement de combat ou initier une bataille.
+    }
+    
     
     public void Deplacer(Deplacement direction)
     {
+        int targetRow = personnage.row;
+        int targetCol = personnage.col;
         switch (direction)
         {
             case Deplacement.LEFT:
@@ -243,22 +274,58 @@
                     personnage.row++;
                 break;
         }
+    // Vérifiez si les nouvelles coordonnées sont dans les limites du tableau
+        if (targetRow >= 0 && targetRow < terrain1.plateau.GetLength(0) && targetCol >= 0 && targetCol < terrain1.plateau.GetLength(1))
+        {
+    // Vérifiez s'il y a un monstre à la nouvelle position
+            Entity? targetEntity = terrain1.plateau[targetRow, targetCol];
+
+            if (targetEntity != null && targetEntity.GetType() == typeof(Monstre))
+            {
+    // Si un monstre est rencontré, redirigez vers la zone de combat
+               
+            }
+            else
+            {
+                terrain1.plateau[personnage.row, personnage.col] = null;
+                personnage.row = targetRow;
+                personnage.col = targetCol;
+                terrain1.plateau[personnage.row, personnage.col] = personnage;
+                Sauvegarde();
+                StateHasChanged();
+            }
+        }
+        else
+        {
+            Console.WriteLine("Déplacement en dehors des limites du tableau");
+        }
     }
     
+
+    public void ShowPlateau()
+    {
+        showPlateau = false;
+    }
+
     public Terrain? terrain1;
     public Entity? personnage;
     public Entity? monstre;
-    
-  
+    public bool showPlateau = true;
+
+
 
 }
+
+
+
 
 <PageTitle>Plateau</PageTitle>
 <h3>Plateau</h3>
 <ul>
     <li><NavLink href="/" class="btn btn-primary">Quitter le jeu</NavLink></li>
 </ul>
-
+@if (showPlateau)
+{
 @if (personnage != null)
 {
     <div class="board" @onkeydown="HandleKeyDown" tabindex="0" autofocus style="outline:none">
@@ -277,8 +344,48 @@
     <div>
         <div>Position : @($"{personnage.row}-{personnage.col}")</div>
         <div>PV : @personnage.PointDeVie</div>
-        </div>
+    </div>
 
-}
+    }
+}else
+    {
+        <PageTitle>Zone de combat</PageTitle>
+
+
+        <div class="globalDiv">
+            <h3>ZoneCombat</h3>
+            <div class="interface1">
+                <ul>
+                    <li><NavLink href="Plateau" class="btn btn-primary">Retourner sur la carte </NavLink></li>
+                </ul>
+                <ul>
+                    <li><NavLink href="/" class="btn btn-primary">Quitter le jeu</NavLink></li>
+                </ul>
+
+            </div>
+            <div class="ZoneCombat">
+
+            </div>
+            <div class="interface1">
+                <div class="zoneTxtCombat">
+           
+                </div>
+                <div class="espAttac">
+                    <div class="listeAttaques">
+                        <ul>
+                            <li><button class="attac"> action1 </button></li>
+                            <li><button class="attac"> action2 </button></li>
+                        </ul>
+                    </div>
+                    <div class="listeAttaques">
+                        <ul>
+                            <li><button class="attac"> action3 </button></li>
+                            <li><button class="attac"> action4 </button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    } 
 
    
