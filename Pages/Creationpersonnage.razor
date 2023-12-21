@@ -57,7 +57,23 @@
                 Console.WriteLine(EntityService.Entity);
                 break;
 
-            // Ajoutez d'autres cas selon vos classes
+            case "Archer":
+                Console.WriteLine("Je suis un Archer");
+
+                EntityService.Entity = new Archer(raceSelectionnee, nomPersonnage);
+                Console.WriteLine(EntityService.Entity.Classes);
+                Console.WriteLine(EntityService.Entity.Nom);
+                Console.WriteLine(EntityService.Entity);
+                break;
+                
+            case "Sorcier":
+                Console.WriteLine("Je suis un sorcier");
+
+                EntityService.Entity = new Sorcier(raceSelectionnee, nomPersonnage);
+                Console.WriteLine(EntityService.Entity.Classes);
+                Console.WriteLine(EntityService.Entity.Nom);
+                Console.WriteLine(EntityService.Entity);
+                break;
 
             default:
                 break;

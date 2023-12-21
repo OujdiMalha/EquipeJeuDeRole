@@ -4,27 +4,28 @@ namespace EquipeJeuDeRole.Pages
 {
     public class Monstre : Entity
     {
-
+        
+        public List<string> AttackList = new List<string>() {"AttaqueMECHANTE"};
+        
 
         public Monstre()
         {
-            Nom = "MONSTRE";
-            Race = Races.NULL;
+            Nom = "GOBLIN";
+            Race = Races.GOBLIN;
             PointDeVie = 20;
         }
 
-        public Monstre(string aNom = "MONSTRE", Races aRace = Races.NULL)
+        public Monstre(string aNom = "GOBLIN", Races aRace = Races.GOBLIN)
         {
             PointDeVie = 20;
         }
-
         
-        
-        
-        public override void Attaquer(Entity cible)
+        public int AttaqueMECHANTE(Entity personnage)
         {
-            Console.WriteLine("Le monstre attaque !");
-            
+            //attaque aléatoire 
+            Random rnd = new Random();
+            damage = rnd.Next(1, 6);
+            return personnage.PointDeVie -= damage;
         }
     }
 }

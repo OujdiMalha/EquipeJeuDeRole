@@ -9,6 +9,7 @@ namespace EquipeJeuDeRole.Pages
         public int PointDeVie = 20;
         public int row { get; set; }
         public int col { get; set; } 
+        public int damage { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]public Classes Classes { get; set; }
 
 
@@ -17,7 +18,7 @@ namespace EquipeJeuDeRole.Pages
         {
         }
         
-        public virtual void Attaquer(Entity cible)
+        public virtual int Attaquer(Entity cible)
         {
             throw new NotImplementedException();
         }

@@ -1,6 +1,8 @@
 
 
 
+using System.Data.Common;
+
 namespace EquipeJeuDeRole.Pages
 {
 
@@ -10,6 +12,7 @@ namespace EquipeJeuDeRole.Pages
 
 
         public int Force { get; set; }
+        public List<string> AttackList = new List<string>() { "AttaqueLegere", "AttaqueLourde" };
         
 
 
@@ -35,9 +38,20 @@ namespace EquipeJeuDeRole.Pages
         
 
 
-        public override void Attaquer(Entity cible)
+        public int AttaqueLegere(Entity monstre)
         {
-            Console.WriteLine("Le guerrier attaque !");
+            //attaque aléatoire avec sa force de 1 a 6
+            Random rnd = new Random();
+            damage = rnd.Next(1, Force);
+            return monstre.PointDeVie -= damage;
+        }
+        public int AttaqueLourde(Entity monstre)
+        {
+            //attaque aléatoire avec sa force de 1 a force+2 
+            Random rnd = new Random();
+            damage = rnd.Next(1, Force+2);
+            
+            return monstre.PointDeVie -= damage;
         }
     }
 }

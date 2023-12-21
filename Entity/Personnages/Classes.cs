@@ -2,5 +2,5 @@
 
 public enum Classes
 {
-    GUERRIER,ARCHER,MAGE
+    GUERRIER,ARCHER,SORCIER
 }

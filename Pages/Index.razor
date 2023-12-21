@@ -1,5 +1,7 @@
 ﻿@page "/"
 @inject NavigationManager nav
+@inject IJSRuntime JSRuntime
+
 <PageTitle>Index</PageTitle>
 <link rel="stylesheet" href="Index.razor.css" />
 
@@ -38,7 +40,7 @@
 @code {
     private void NouvellePartie()
     {
-        // Logique pour commencer une nouvelle partie
+        JSRuntime.InvokeVoidAsync("localStorage.removeItem", "pageStateData");
         nav.NavigateTo("creationpersonnage");
     }
 
@@ -49,6 +51,7 @@
 
     private void ChargerPartie()
     {
+        nav.NavigateTo("Plateau");
         // Logique pour charger une partie sauvegardée
     }
 
