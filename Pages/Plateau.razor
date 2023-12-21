@@ -135,7 +135,7 @@
             int targetRow = personnage?.row + row ?? 0;
             int targetCol = personnage?.col + col ?? 0;
 
-    // Vérifiez si les nouvelles coordonnées sont dans les limites du tableau
+                // Vérifiez si les nouvelles coordonnées sont dans les limites du tableau
             if (terrain1 != null &&
                 terrain1.plateau != null &&
                 targetRow >= 0 && targetRow < terrain1.plateau.GetLength(0) &&
@@ -145,14 +145,14 @@
 
                 if (cellEntity != null)
                 {
-    // Affichez l'image correspondante à l'entité
+                    // Affichez l'image correspondante à l'entité
                     var entityImage = GetEntityImage(cellEntity);
                     return $"<img src='{entityImage}' alt='Entité' style=' width: 100%; height: 100%;' />";
                 }
                 
                 else
                 {
-    // Si l'entité est null, affichez autre chose
+                // Si l'entité est null, affichez autre chose
                     return "0";
                 }
             }
@@ -174,12 +174,13 @@
         string entityTypeName;
         if (entity.Race is Races.MALEFAX || entity.Nom=="MALEFAX")
         {
-            entityTypeName ="MALEFAX";
+            entityTypeName = entity.Race.ToString().ToUpper();
         }
         else
         {
             entityTypeName = entity.GetType().Name.ToUpper();
         }
+        
         
         return $"/sample-data/{entityTypeName}.png";
     }
@@ -408,6 +409,11 @@
     
 
 }
+
+<head>
+    
+    <link rel="stylesheet" href="/Pages/Plateau/Plateau.razor.css" />
+</head>
 <PageTitle>JeuxDeRole</PageTitle>
 <h1 style="text-align: center">Jeux de role</h1>
 <p></p>
@@ -415,10 +421,10 @@
 @if (showPlateau && personnage != null)
 {
     <div class="board" @onkeydown="HandleKeyDown" tabindex="0" autofocus style="outline:none">
-        @for (int i = -4; i < 6; i++)
+        @for (int i = -3; i < 4; i++)
         {
             <div class="zc-row">
-                @for (int j = -4; j < 6; j++)
+                @for (int j = -3; j < 4; j++)
                 {
                     <div class="zc-cell" id=@($"{personnage.row + i}-{personnage.col + j}")>
                         @(new MarkupString(AfficherContenuCellule(i, j)))
