@@ -17,7 +17,15 @@ namespace EquipeJeuDeRole.Pages
 
         public Monstre(string aNom = "GOBLIN", Races aRace = Races.GOBLIN)
         {
-            PointDeVie = 20;
+            if (aRace is Races.MALEFAX)
+            {
+                PointDeVie = 100;
+            }
+            else
+            {
+                PointDeVie = 20;
+            }
+           
         }
         
         public int AttaqueMECHANTE(Entity personnage)

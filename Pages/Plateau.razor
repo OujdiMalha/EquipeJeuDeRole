@@ -5,6 +5,7 @@
 @using System.Text.Json.Serialization
 @inject EntityService EntityService
 @inject IJSRuntime JsRuntime
+@using Microsoft.AspNetCore.Components
 
 
 
@@ -17,6 +18,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        
         
         try
         {
@@ -69,7 +71,14 @@
             {
                 personnage = EntityService.Entity;
                 terrain1 = new Terrain();
-                
+                Monstre malefax = new Monstre("Malefax", Races.MALEFAX);
+
+                malefax.row = 43;
+                malefax.col = 50;
+
+                terrain1.plateau[43, 50] = null;
+                terrain1.plateau[malefax.row, malefax.col] = malefax;
+
                 personnage.row = terrain1.plateau.GetLength(0) / 2;
                 personnage.col = terrain1.plateau.GetLength(1) / 2;
                 
@@ -126,7 +135,7 @@
             int targetRow = personnage?.row + row ?? 0;
             int targetCol = personnage?.col + col ?? 0;
 
-            // Vérifiez si les nouvelles coordonnées sont dans les limites du tableau
+    // Vérifiez si les nouvelles coordonnées sont dans les limites du tableau
             if (terrain1 != null &&
                 terrain1.plateau != null &&
                 targetRow >= 0 && targetRow < terrain1.plateau.GetLength(0) &&
@@ -136,26 +145,14 @@
 
                 if (cellEntity != null)
                 {
-                    // Vérifiez le type de l'entité
-                    if (cellEntity.GetType() == typeof(Guerrier) || cellEntity.GetType() == typeof(Archer))
-                    {
-                        // Si c'est un Entity Classe, retournez "P" par exemple
-                        return "P";
-                    }
-                    else if (cellEntity.GetType() == typeof(Monstre))
-                    {
-                        // Si c'est un Monstre, retournez "M" par exemple
-                        return "M";
-                    }
-                    else
-                    {
-                        // Autre type d'entité, ajustez le symbole selon vos besoins
-                        return "X";
-                    }
+    // Affichez l'image correspondante à l'entité
+                    var entityImage = GetEntityImage(cellEntity);
+                    return $"<img src='{entityImage}' alt='Entité' style=' width: 100%; height: 100%;' />";
                 }
+                
                 else
                 {
-                    // Si l'entité est null, affichez autre chose
+    // Si l'entité est null, affichez autre chose
                     return "0";
                 }
             }
@@ -171,6 +168,24 @@
             return "*";
         }
     }
+
+    public string GetEntityImage(Entity entity)
+    {
+        string entityTypeName;
+        if (entity.Race is Races.MALEFAX || entity.Nom=="MALEFAX")
+        {
+            entityTypeName ="MALEFAX";
+        }
+        else
+        {
+            entityTypeName = entity.GetType().Name.ToUpper();
+        }
+        
+        return $"/sample-data/{entityTypeName}.png";
+    }
+
+    
+
     private void HandleKeyDown(KeyboardEventArgs touche)
     {
         int targetRow = personnage.row;
@@ -406,7 +421,7 @@
                 @for (int j = -4; j < 6; j++)
                 {
                     <div class="zc-cell" id=@($"{personnage.row + i}-{personnage.col + j}")>
-                        @AfficherContenuCellule(i, j)
+                        @(new MarkupString(AfficherContenuCellule(i, j)))
                     </div>
                 }
             </div>
@@ -417,6 +432,7 @@
             <div>PV : @personnage.PointDeVie</div>
         </div>
     </div>
+
 }
 @if (enCombat)
 {
