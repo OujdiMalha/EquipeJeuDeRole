@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="Index.razor.css" />
 
 <div>
-    <h2>Jeu de rôle</h2>
+    <h2 class="main-title">Jeu de rôle</h2>
     <ul class="horizontal-list">
         <li>
             <button @onclick="NouvellePartie">Nouvelle Partie : choisir votre personnage</button>
@@ -22,12 +22,12 @@
     </ul>
     -->
 
-    <ul>
+    <!--<ul>
         <li><NavLink href="Plateau" class="btn btn-primary">Aller à la page Plateau</NavLink></li>
         <li><NavLink href="ZoneCombat" class="btn btn-primary">Aller à la page Zone de Combat</NavLink></li>
-    </ul>
+    </ul>-->
 
-    <ul>
+    <ul class="list-options">
         <li>
             <button class="precedente" @onclick="ChargerPartie">Partie précédemment sauvegardée</button>
         </li>

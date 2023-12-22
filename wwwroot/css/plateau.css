@@ -1,52 +1,67 @@
 plateau.css
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
-.board {
-    display:flex;
+.plateau {
+    display: flex;
     flex-direction: row;
+    border: double 8px #90EE90;
 }
 .zc-row {
     display: flex;
     flex-direction: row;
 }
-
 .zc-cell {
-    height: 35px;
-    width: 35px;
+    height: 30px;
+    width: 30px;
     background-color : green;
     padding: 10px;
-    border: solid black 1px;
+    border: none;
 }
-
-.globalDiv{
-    background-color: saddlebrown;
-    width: 100%;
+.globalDiv {
+    background-color: #70583e;
+    width: 90%;
     height: 100%;
+    border-radius: 30px;
 }
 .interface1 {
     display: flex;
-    background-color: sandybrown;
-    width: 80%;
+    background-color: #C19770;
+    width: 100%;
     height: 8em;
+    background-color: #8c7862;
+    background-image: repeating-linear-gradient( 45deg, rgba(100,40,0,0.8), rgba(100,40,0,0.8) 100px, transparent 0px, transparent 200px ), repeating-linear-gradient( -45deg, rgba(100,40,0,0.5), rgba(100,40,0,0.5) 100px, transparent 0px, transparent 200px );
+    border:groove 4px brown;
 }
-.ZoneCombat{
+.ZoneCombat {
+    display: flex;
     background-color: darkgreen;
-    height:24em;
-    width:80%;
+    height: 24em;
+    width: 100%;
 }
 .zoneTxtCombat {
     margin: 2em;
-    background-color: antiquewhite;
-    width: 40%;
-    height: 4em;
+    background-color: sandybrown;
+    width: 50%;
+    min-height: 5em;
     position: relative;
     /*top: 2em;
     left: 4em;*/
+    padding:4px;
+    border-radius: 20px;
+    border: solid brown;
+}
+.zoneTxtCombat:first-child{
+
 }
 .listeAttaques {
+    border-radius: 10px;
+    border: 8px ridge #B98E7B;
     display: inline-block;
     background-color: antiquewhite;
     width: 100%;
-    height: 5em;
+    height: 6em;
+    padding:2px;
+    margin:-10px;
 }
 .listeAttaques > ul > li > button{
        margin: 0.2em;
@@ -63,4 +78,103 @@ plateau.css
     width:100%;
     margin: 2em;
     display: flex;
+}
+.cellPersonnage {
+    height: 60px;
+    width: 60px;
+    background-color: blue;
+    padding: 10px;
+    border: solid black 1px;
+}
+.cellEnnemi {
+    height: 60px;
+    width: 60px;
+    background-color: darkred;
+    padding: 10px;
+    border: solid black 1px;
+}
+.form-div {
+    text-align:center;
+    width: 20em;
+    border-radius: 20px 20px 10px 10px;
+    background-color: green;
+    border: groove 6px #90EE90;
+    box-shadow: 10px 20px;
+}
+
+.form-group {
+    max-width: 20em;
+    padding: 1em;
+}
+.form-control{
+    max-width: 18em;
+    background-color: orange;
+    padding:1em;
+   
+}
+.form-control:hover {
+    background-color: orangered;
+ }
+
+body {
+    --s: 100px; /* control the size */
+    --c1: green;
+    --c2: #90EE90;
+    --_g: var(--c2) 6% 14%,var(--c1) 16% 24%,var(--c2) 26% 34%,var(--c1) 36% 44%, var(--c2) 46% 54%,var(--c1) 56% 64%,var(--c2) 66% 74%,var(--c1) 76% 84%,var(--c2) 86% 94%;
+    background: radial-gradient(100% 100% at 100% 0,var(--c1) 4%,var(--_g),#0008 96%,#0000), radial-gradient(100% 100% at 0 100%,#0000, #0008 4%,var(--_g),var(--c1) 96%) var(--c1);
+    background-size: var(--s) var(--s);
+}
+.t-perso {
+    text-align:center;
+    font-family: 'MedievalSharp', cursive;
+    color: darkred;
+    background-color: forestgreen;
+    width: 12em;
+    padding: 1em;
+    border-radius: 20px 20px 10px 10px;
+    border: double 6px #90EE90;
+}
+.btn-perso{
+    background-color:brown;
+    color:yellow;
+    margin:1em;
+}
+.btn-perso:hover{
+    background-color:red;
+}
+.title-plat {
+    text-align: center;
+    color: orangered;
+    font-weight: bolder;
+    font-size:80px;
+    text-shadow: #FC0 2px 0 10px;
+}
+.div-aff{
+    text-align:center;
+    background-color:azure;
+    color:darkred;
+    width:44em;
+}
+.espace-ennemi {
+    background-color: lightcoral;
+    width: 50%;
+    height: 100%;
+    border-bottom: ridge 10px #B98E7B;
+    border-top: ridge 10px #B98E7B;
+    border-right: ridge 10px #B98E7B;
+}
+.espace-joueur {
+    background-color: lightblue;
+    width: 50%;
+    height: 100%;
+    border-bottom: ridge 10px #B98E7B;
+    border-top: ridge 10px #B98E7B;
+    border-left: ridge 10px #B98E7B;
+}
+.titre-combat {
+     text-align: center;
+     color: yellow;
+     text-shadow: #FC0 2px 0 10px;
+     padding-top:8px;
+     margin: 10px;
 }

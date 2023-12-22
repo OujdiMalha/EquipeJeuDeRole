@@ -3,8 +3,15 @@
 @inject EntityService EntityService
 @inject NavigationManager NavigationManager
 
-<h3>Création du personnage</h3>
+<head>
+<link rel="stylesheet" href="/Pages/Plateau/Plateau.razor.css" />
+</head>
+<h3 style="color:@textis">Création du personnage</h3>
+<br />
+<button @onclick="changeColor" class="t-perso"> changer couleur </button> <!-- le bouton qui va changer la couleur du titre-->
 
+
+<div class="form-div">
 <form @onsubmit="CreerPersonnage">
     <div class="form-group">
         <label for="classe">Classe:</label>
@@ -34,8 +41,21 @@
         <input type="text" id="nom" class="form-control" @bind="nomPersonnage" />
     </div>
 
-    <button type="submit" class="btn btn-primary">Créer Personnage</button>
+        <button type="submit" class="btn-perso">Créer Personnage</button>
+       
 </form>
+</div>
+
+<!-- code pour changer la couleur du titre-->
+@code
+{
+    private string textis = "black";
+    private void changeColor()
+    {
+        textis = (textis == "black") ? "red" : "black";
+    }
+}
+
 
 @code {
     private string classeSelectionnee;
