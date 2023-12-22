@@ -1,4 +1,5 @@
 ﻿Index.razor.css
+
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -77,8 +78,8 @@ ol {
 
 /* Styles pour le bouton avec la classe "partie" */
 .partie {
-    background-color: #FF0000;
-    color: #333333;
+    background-color: #32CD32;
+    color: black;
 }
 
 
@@ -86,7 +87,7 @@ ol {
 .guArSo {
     width: 300px;
     background-color: #ffd700;
-    color: #333333;
+    color: black;
 }
 .btn-primary {
     font-family: 'Exo', sans-serif; /* Une police moderne et géométrique avec une allure futuriste */
@@ -103,27 +104,26 @@ ol {
 }
 /* Styles pour le bouton avec la classe "precedente" */
 .precedente {
-    background-color: darkblue;
-    color: #90EE90;
+    background-color: #4682B4;
+    color: black;
 }
 
     /* Styles pour le bouton avec la classe "quitter" */
 .quitter {
-    background-color: darkred;
-    color: #90EE90;
+    background-color: #FF0000;
+    color: black;
     text-align: center;
 }
 
 .main-title {
-    text-align: center;
-    color: firebrick;
+    text-align: left;
+    font-family: Impact, fantasy;
     font-weight: bold;
-    font-size: 4em;
-    background-color: sandybrown;
+    font-size: 3em;
+    background-color: rgba(128, 128, 128, 0.4);
     border-radius: 20px 30px 20px 20px;
     padding: 0.2em;
     margin-bottom: 2em;
-    border: double 14px saddlebrown;
 }
 button {
     color: #90EE90;

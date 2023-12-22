@@ -6,7 +6,10 @@
 <head>
 <link rel="stylesheet" href="/Pages/Plateau/Plateau.razor.css" />
 </head>
-<h3 class="t-perso">Création du personnage</h3>
+<h3 style="color:@textis">Création du personnage</h3>
+<br />
+<button @onclick="changeColor" class="t-perso"> changer couleur </button> <!-- le bouton qui va changer la couleur du titre-->
+
 
 <div class="form-div">
 <form @onsubmit="CreerPersonnage">
@@ -38,9 +41,21 @@
         <input type="text" id="nom" class="form-control" @bind="nomPersonnage" />
     </div>
 
-    <button type="submit" class="btn-perso">Créer Personnage</button>
+        <button type="submit" class="btn-perso">Créer Personnage</button>
+       
 </form>
 </div>
+
+<!-- code pour changer la couleur du titre-->
+@code
+{
+    private string textis = "black";
+    private void changeColor()
+    {
+        textis = (textis == "black") ? "red" : "black";
+    }
+}
+
 
 @code {
     private string classeSelectionnee;
