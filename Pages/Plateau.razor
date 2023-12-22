@@ -428,7 +428,7 @@
             <div class="zc-row">
                 @for (int j = -3; j < 4; j++)
                 {
-                    <div class="zc-cell" id=@($"{personnage.row + i}-{personnage.col + j}")>
+                    <div class="@(AfficherContenuCellule(i, j) == "*" ? "border-cell" : "zc-cell")" id=@($"{personnage.row + i}-{personnage.col + j}")>
                         @(new MarkupString(AfficherContenuCellule(i, j)))
                     </div>
                 }

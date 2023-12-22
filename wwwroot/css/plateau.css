@@ -9,11 +9,19 @@ plateau.css
 .zc-row {
     display: flex;
     flex-direction: row;
+    border:none;
 }
 .zc-cell {
-    height: 30px;
-    width: 30px;
-    background-color : green;
+    height: 100px;
+    width: 100px;
+    background-image: url("basicDarkGrass.jpg");
+    padding: 10px;
+    border: none;
+}
+.border-cell {
+    height: 100px;
+    width: 100px;
+    background-color:black;
     padding: 10px;
     border: none;
 }
