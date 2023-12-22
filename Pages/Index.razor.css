@@ -103,12 +103,32 @@ ol {
 }
 /* Styles pour le bouton avec la classe "precedente" */
 .precedente {
-    background-color: #A9EAFE;
-    color: #333333;
+    background-color: darkblue;
+    color: #90EE90;
 }
 
     /* Styles pour le bouton avec la classe "quitter" */
 .quitter {
-    background-color: red;
-    color: #333333;
+    background-color: darkred;
+    color: #90EE90;
+    text-align: center;
+}
+
+.main-title {
+    text-align: center;
+    color: firebrick;
+    font-weight: bold;
+    font-size: 4em;
+    background-color: sandybrown;
+    border-radius: 20px 30px 20px 20px;
+    padding: 0.2em;
+    margin-bottom: 2em;
+}
+button {
+    color: #90EE90;
+    background-color: darkgreen;
+    border: groove 6px #90EE90;
+}
+.list-options {
+    text-align:center;
 }

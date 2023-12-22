@@ -13,6 +13,7 @@
 
 
 @code {
+
     
     
 
@@ -415,7 +416,7 @@
     <link rel="stylesheet" href="/Pages/Plateau/Plateau.razor.css" />
 </head>
 <PageTitle>JeuxDeRole</PageTitle>
-<h1 style="text-align: center">Jeux de role</h1>
+<h1 class="title-plat">Jeux de role</h1>
 <p></p>
 
 @if (showPlateau && personnage != null)
@@ -433,7 +434,7 @@
             </div>
         }
 
-        <div>
+        <div class="div-aff">
             <div>Position : @($"{personnage.row}-{personnage.col}")</div>
             <div>PV : @personnage.PointDeVie</div>
         </div>
