@@ -123,6 +123,7 @@ ol {
     border-radius: 20px 30px 20px 20px;
     padding: 0.2em;
     margin-bottom: 2em;
+    border: double 14px saddlebrown;
 }
 button {
     color: #90EE90;
