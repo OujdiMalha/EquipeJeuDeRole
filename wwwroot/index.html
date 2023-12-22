@@ -28,6 +28,11 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        window.preventDefault = function (e) {
+            e.preventDefault();
+        };
+    </script>
 </body>
 
 </html>

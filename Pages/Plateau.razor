@@ -14,6 +14,8 @@
 
 @code {
 
+
+
     
     
 
@@ -422,7 +424,7 @@
 
 @if (showPlateau && personnage != null)
 {
-    <div class="board" @onkeydown="HandleKeyDown" tabindex="0" autofocus style="outline:none">
+    <div class="board" @onkeydown="HandleKeyDown" @onkeydown:preventDefault tabindex="0" autofocus style="outline:none">
         @for (int i = -3; i < 4; i++)
         {
             <div class="zc-row">
