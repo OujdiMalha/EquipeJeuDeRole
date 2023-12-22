@@ -1,20 +1,39 @@
+
+
 namespace EquipeJeuDeRole.Pages
 {
-
-
-
     public class Monstre : Entity
     {
+        
+        public List<string> AttackList = new List<string>() {"AttaqueMECHANTE"};
+        
 
-        public override void Attaquer(Entity cible)
+        public Monstre()
         {
-            Console.WriteLine("Le monstre attaque !");
-            throw new NotImplementedException();
+            Nom = "GOBLIN";
+            Race = Races.GOBLIN;
+            PointDeVie = 20;
         }
 
-        public Monstre(string aNom = "MONSTRE", Races aRaces = Races.NULL) : base(aNom, 20, aRaces)
+        public Monstre(string aNom = "GOBLIN", Races aRace = Races.GOBLIN)
         {
-            aNom = "Monstre";
+            if (aRace is Races.MALEFAX)
+            {
+                PointDeVie = 100;
+            }
+            else
+            {
+                PointDeVie = 20;
+            }
+           
+        }
+        
+        public int AttaqueMECHANTE(Entity personnage)
+        {
+            //attaque aléatoire 
+            Random rnd = new Random();
+            damage = rnd.Next(1, 6);
+            return personnage.PointDeVie -= damage;
         }
     }
 }
